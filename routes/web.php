@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\back\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/wel', function () {
+    return view('welcome');
+});
 
-Route::get('/', function () {
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/', function(){
     return view('front.index');
 });
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
+require __DIR__ . '/auth.php';
