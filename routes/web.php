@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\back\AdminController;
 
+use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Auth\Events\Registered;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,19 +24,19 @@ Route::get('/welcome', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->name('dashboard');
 
 Route::get('/', function () {
     return view('front.main');
-});
+})->name('home');
 
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/login', function () {
-    return view('auth.register');
-})->name('register');
+Route::get('/register', [RegisteredUserControllerController::class, 'create']);
+
+Route::post('/register/store', [RegisteredUserController::class, 'store'])->name('register');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
