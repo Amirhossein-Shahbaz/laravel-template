@@ -20,8 +20,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        // dd('hi');
         return view('auth.register');
+        // dd('hi');
     }
 
     /**
@@ -34,22 +34,27 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $messages = [
+            'name' => 'please enter your name',
+            'email' => 'please enter your email',
+            'password' => 'please enter your password',
+        ];
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-        // dd('hi');
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => ['required'],
+            'phone' => ['required'],
+        ], $messages);
+
+        $user = new User([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+            'phone' => $request->get('phone'),
         ]);
 
-        event(new Registered($user));
+        $user->save();
 
-        Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }

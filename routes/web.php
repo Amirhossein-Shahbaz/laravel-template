@@ -6,6 +6,7 @@ use App\Http\Controllers\back\AdminController;
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Auth\Events\Registered;
+use Monolog\Registry;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +35,16 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/register', [RegisteredUserControllerController::class, 'create']);
+// Route::get('/registery', [RegisteredUserController::class, 'create'])->name('create');
 
-Route::post('/register/store', [RegisteredUserController::class, 'store'])->name('register');
+// Route::post('/registery/store', [RegisteredUserController::class, 'store'])->name('registery');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+// Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
 require __DIR__ . '/auth.php';
+
+Route::get('/registery', [RegisteredUserController::class, 'create'])->name('create');
+
+Route::post('/registery/store', [RegisteredUserController::class, 'store'])->name('registery');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
