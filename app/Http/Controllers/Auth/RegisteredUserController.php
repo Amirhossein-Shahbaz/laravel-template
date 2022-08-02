@@ -46,15 +46,24 @@ class RegisteredUserController extends Controller
             'phone' => ['required'],
         ], $messages);
 
-        $user = new User([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => $request->get('password'),
-            'phone' => $request->get('phone'),
+        // $user = new User([
+        //     'name' => $request->get('name'),
+        //     'email' => $request->get('email'),
+        //     'password' => $request->get('password'),
+        //     'phone' => $request->get('phone'),
+        // ]);
+
+        // $user->save();
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'phone' => $request->phone,
         ]);
 
-        $user->save();
+        event(new Registered($user));
 
+        Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }
