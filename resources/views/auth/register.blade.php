@@ -22,7 +22,7 @@
             </ol>
         </nav>
 
-        <form action="{{ route('registery') }}" method="POST">
+        <form action="{{ route('register') }}" method="POST">
             @csrf
             <div class="form-row">
                 <div class="col-md-4 mb-3">

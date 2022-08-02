@@ -28,9 +28,9 @@
                 <li><a href="#team">Team</a></li>
                 <li class="drop-down"><a href="">User menu</a>
                     <ul>
-                        <li><a href="{{ route('login') }}">Login</a></li>
+                        {{-- <li><a href="{{ route('login') }}">Login</a></li>
                         <li><a href="{{ route('create') }}">Register</a></li>
-                        <li><a href="#">Exit</a></li>
+                        <li><a href="#">Exit</a></li> --}}
                     </ul>
                 </li>
                 <li><a href="#footer">Contact Us</a></li>

@@ -31,20 +31,13 @@ Route::get('/', function () {
     return view('front.main');
 })->name('home');
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+// Route::get('/login', function () {
+//     return view('auth.login');
+// })->name('login');
 
 // Route::get('/registery', [RegisteredUserController::class, 'create'])->name('create');
 
 // Route::post('/registery/store', [RegisteredUserController::class, 'store'])->name('registery');
-
-// Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-
 require __DIR__ . '/auth.php';
 
-Route::get('/registery', [RegisteredUserController::class, 'create'])->name('create');
 
-Route::post('/registery/store', [RegisteredUserController::class, 'store'])->name('registery');
-
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
