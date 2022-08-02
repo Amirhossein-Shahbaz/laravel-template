@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\back\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/wel', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
@@ -21,9 +23,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/', function(){
-    return view('front.index');
+Route::get('/', function () {
+    return view('front.main');
 });
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/login', function () {
+    return view('auth.register');
+})->name('register');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 

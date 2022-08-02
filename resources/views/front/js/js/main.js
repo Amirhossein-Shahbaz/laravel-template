@@ -112,23 +112,23 @@
   });
 
   // Testimonials carousel (uses the Owl Carousel library)
-  $(".testimonials-carousel").owlCarousel({
-    autoplay: true,
-	rtl: true,
-    dots: true,
-    loop: true,
-    items: 1
-  });
+  // $(".testimonials-carousel").owlCarousel({
+  //   autoplay: true,
+	// rtl: true,
+  //   dots: true,
+  //   loop: true,
+  //   items: 1
+  // });
 
-  // Clients carousel (uses the Owl Carousel library)
-  $(".clients-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-	rtl: true,
-    responsive: { 0: { items: 2 }, 768: { items: 4 }, 900: { items: 6 }
-    }
-  });
+  // // Clients carousel (uses the Owl Carousel library)
+  // $(".clients-carousel").owlCarousel({
+  //   autoplay: true,
+  //   dots: true,
+  //   loop: true,
+	// rtl: true,
+  //   responsive: { 0: { items: 2 }, 768: { items: 4 }, 900: { items: 6 }
+  //   }
+  // });
 
 })(jQuery);
 
