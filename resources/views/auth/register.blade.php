@@ -1,56 +1,65 @@
-@extends('front.index')
+<x-guest-layout>
+    <x-auth-card>
+        <x-slot name="logo">
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            </a>
+        </x-slot>
 
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-@section('content')
-    <style>
-        .breadcrumb-item+.breadcrumb-item::before {
-            content: url('front/images/img/arrow-left.svg');
-            width: 25px;
-            height: 25px;
-            transform: translateY(4.5px);
-        }
-    </style>
-
-
-    <section id="intro2" class="clearfix"></section>
-    <main class="container main2">
-
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bgcolor">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Register</li>
-            </ol>
-        </nav>
-
-        <form action="{{ route('register') }}" method="POST">
+        <form method="POST" action="{{ route('register') }}">
             @csrf
-            <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">First name</label>
-                    <input type="text" class="form-control" id="validationCustom01" placeholder="Name" name="name">
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="validationCustomUsername">Email</label>
-                    <div class="input-group">
-                        <input type="email" class="form-control" id="validationCustomUsername" placeholder="Email"
-                            aria-describedby="inputGroupPrepend" name="email">
-                    </div>
-                </div>
+
+            <!-- Name -->
+            <div>
+                <x-label for="name" :value="__('Name')" />
+
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                    autofocus />
             </div>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="validationCustom03">Password</label>
-                    <input type="password" class="form-control" id="validationCustom03" placeholder="Password"
-                        name="password">
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationCustom04">Phone</label>
-                    <input type="text" class="form-control" id="validationCustom04" placeholder="phone" name="phone">
-                </div>
+
+            <!-- Email Address -->
+            <div class="mt-4">
+                <x-label for="email" :value="__('Email')" />
+
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    required />
             </div>
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <!-- Phone Number -->
+            <div class="mt-4">
+                <x-label for="email" :value="__('Phone')" />
+
+                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"
+                    required />
+            </div>
+
+            <!-- Password -->
+            <div class="mt-4">
+                <x-label for="password" :value="__('Password')" />
+
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="new-password" />
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mt-4">
+                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                    name="password_confirmation" required />
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
+
+                <x-button class="ml-4">
+                    {{ __('Register') }}
+                </x-button>
+            </div>
         </form>
-
-
-    </main>
-@endsection
+    </x-auth-card>
+</x-guest-layout>

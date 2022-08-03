@@ -30,7 +30,12 @@
                     <ul>
                         <li><a href="{{ route('login') }}">Login</a></li>
                         <li><a href="{{ route('register') }}">Register</a></li>
-                        <li><a href="#">Exit</a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Exit</button>
+                            </form>
+                        </li>
                     </ul>
                 </li>
                 <li><a href="#footer">Contact Us</a></li>

@@ -31,13 +31,4 @@ Route::get('/', function () {
     return view('front.main');
 })->name('home');
 
-// Route::get('/login', function () {
-//     return view('auth.login');
-// })->name('login');
-
-// Route::get('/registery', [RegisteredUserController::class, 'create'])->name('create');
-
-// Route::post('/registery/store', [RegisteredUserController::class, 'store'])->name('registery');
 require __DIR__ . '/auth.php';
-
-
