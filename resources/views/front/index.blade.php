@@ -19,6 +19,7 @@
     <link href="front/css/lib/animate/animate.min.css" rel="stylesheet">
     <link href="front/css/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="front/css/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
     <!-- Bootstrap CSS File -->
     {{-- <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --}}
 
