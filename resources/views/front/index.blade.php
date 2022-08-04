@@ -54,7 +54,7 @@
 
 
 
-    <div id="preloader"></div>
+     <div id="preloader"></div>
 
     {{-- <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/jquery/jquery-migrate.min.js"></script>

@@ -20,7 +20,6 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        // dd('hi');
         return view('auth.register');
     }
 
@@ -34,11 +33,6 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        // $messages = [
-        //     'name' => 'please enter your name',
-        //     'email' => 'please enter your email',
-        //     'password' => 'please enter your password',
-        // ];
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],

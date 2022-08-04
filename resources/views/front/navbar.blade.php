@@ -29,8 +29,9 @@
                 <li class="drop-down"><a href="">User menu</a>
                     <ul>
                         @auth
-                            {{-- <li><a href="{{ route('login') }}">Login</a></li> --}}
-                            {{-- <li><a href="{{ route('register') }}">Register</a></li> --}}
+                            @if (Auth::user()->role == 1)
+                                <li><a href="{{ route('admin.index') }}" target="_blank">Panel</a></li>
+                            @endif
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf

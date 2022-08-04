@@ -5,10 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\back\AdminController;
 use App\Http\Controllers\front\IndexController;
 
-use App\Http\Controllers\Auth\RegisteredUserController;
-use Illuminate\Auth\Events\Registered;
-use Monolog\Registry;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +22,10 @@ Route::get('/welcome', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('checkrole');
 
 require __DIR__ . '/auth.php';
