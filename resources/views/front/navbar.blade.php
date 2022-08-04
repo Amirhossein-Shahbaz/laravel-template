@@ -28,9 +28,17 @@
                 <li><a href="#team">Team</a></li>
                 <li class="drop-down"><a href="">User menu</a>
                     <ul>
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
-                        <li><a href="#">Exit</a></li>
+                        @auth
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-block btn-danger">Exit</button>
+                                </form>
+                            </li>
+                        @else
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                        @endauth
                     </ul>
                 </li>
                 <li><a href="#footer">Contact Us</a></li>

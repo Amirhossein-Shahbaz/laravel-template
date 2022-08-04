@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/', function () {
     return view('front.main');
-});
+})->name('home');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
