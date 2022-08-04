@@ -27,14 +27,6 @@ Route::get('/', function () {
     return view('front.main');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-Route::get('/login', function () {
-    return view('auth.register');
-})->name('register');
-
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
 require __DIR__ . '/auth.php';
