@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\back\AdminController;
+use App\Http\Controllers\front\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/', function () {
-    return view('front.main');
-})->name('home');
+Route::get('/', [IndexController::class, 'index'])->name('home');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('checkrole');
 
 require __DIR__ . '/auth.php';

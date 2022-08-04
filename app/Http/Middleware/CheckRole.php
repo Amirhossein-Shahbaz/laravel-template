@@ -17,7 +17,9 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->check() && auth()->$user)
-        return $next($request);
+        if (auth()->check() && auth()->user()->role == 1) {
+            return $next($request);
+        }
+        return redirect()->route('home');
     }
 }
