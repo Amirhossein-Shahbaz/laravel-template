@@ -29,8 +29,9 @@ Route::get('/', [IndexController::class, 'index'])->name('home');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('checkrole');
 
-Route::get('/profile/{ user }', [UserController::class, 'edit'])->name('profile');
+Route::get('/profile/{user}', [UserController::class, 'edit'])->name('profile');
 
-Route::post('/update/{ user }', [UserController::class, 'update'])->name('profile-update');
+
+Route::post('/update/{user}', [UserController::class, 'update'])->name('profileupdate');
 
 require __DIR__ . '/auth.php';
