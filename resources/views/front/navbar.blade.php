@@ -28,7 +28,9 @@
                 <li><a href="#team">Team</a></li>
                 <li class="drop-down"><a href="">User menu</a>
                     <ul>
+
                         @auth
+                            <li><a href="{{ route('profile, $user->id') }}">Profile</a></li>
                             @if (Auth::user()->role == 1)
                                 <li><a href="{{ route('admin.index') }}" target="_blank">Panel</a></li>
                             @endif

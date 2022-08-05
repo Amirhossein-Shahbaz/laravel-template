@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\back\AdminController;
 use App\Http\Controllers\front\IndexController;
+use App\Http\Controllers\Auth\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,9 @@ Route::get('/dashboard', function () {
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('checkrole');
+
+Route::get('/profile/{ user }', [UserController::class, 'edit'])->name('profile');
+
+Route::post('/update/{ user }', [UserController::class, 'update'])->name('profile-update');
 
 require __DIR__ . '/auth.php';
