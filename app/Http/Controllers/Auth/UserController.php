@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -58,7 +59,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('profile', compact('user'));
+        return view('auth.profile', compact('user'));
     }
 
     /**
@@ -68,8 +69,46 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
+
+        $messages = [
+            'name.required' => 'Please fill name field',
+            'name.string' => 'Please enter string as name',
+            'name.max' => 'Please enter less character for name',
+            'email.required' => 'Please fill email field',
+            'email.email' => 'Please enter correct email',
+            'email.max' => 'Please enter less character for email',
+            'phone.required' => 'Please fill phone field',
+        ];
+
+        if (!empty($request->password)) {
+            // return $request;
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255'],
+                // 'password' => ['required'],
+                'phone' => ['required'],
+            ], $messages);
+            $password = Hash::make($request->password);
+            $user->password = $password;
+        } else {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255'],
+                // 'password' => ['required'],
+                'phone' => ['required'],
+            ], $messages);
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+
+        $user->save();
+
+        $mes = 'Update has been done successfully';
+        return redirect()->back()->with('success', $mes);
     }
 
     /**
