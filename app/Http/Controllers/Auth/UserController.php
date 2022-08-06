@@ -83,11 +83,11 @@ class UserController extends Controller
         ];
 
         if (!empty($request->password)) {
-            // return $request;
+
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255'],
-                // 'password' => ['required'],
+                'password' => ['min:8'],
                 'phone' => ['required'],
             ], $messages);
             $password = Hash::make($request->password);
@@ -96,7 +96,7 @@ class UserController extends Controller
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255'],
-                // 'password' => ['required'],
+                // 'password' => ['min:8'],
                 'phone' => ['required'],
             ], $messages);
         }
@@ -106,9 +106,8 @@ class UserController extends Controller
         $user->phone = $request->phone;
 
         $user->save();
-
         $mes = 'Update has been done successfully';
-        return redirect()->back()->with('success', $mes);
+        return redirect()->route('profile', compact('user'))->with('message', $mes);
     }
 
     /**

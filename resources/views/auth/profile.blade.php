@@ -8,10 +8,11 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <x-success-message class="mb-4" />
 
         <form method="POST" action="{{ route('profileupdate', $user->id) }}">
             @csrf
-
+            @method('PUT')
             <!-- Name -->
             <div>
                 <x-label for="name" :value="__('Name')" />

@@ -32,6 +32,6 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->mi
 Route::get('/profile/{user}', [UserController::class, 'edit'])->name('profile');
 
 
-Route::post('/update/{user}', [UserController::class, 'update'])->name('profileupdate');
+Route::put('/update/{user}', [UserController::class, 'update'])->name('profileupdate');
 
 require __DIR__ . '/auth.php';
