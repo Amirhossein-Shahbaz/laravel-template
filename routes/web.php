@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\back\AdminController;
+use App\Http\Controllers\back\MemberController;
 use App\Http\Controllers\front\IndexController;
 use App\Http\Controllers\Auth\UserController;
 
@@ -25,10 +26,19 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
+// Admin Routes //
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('checkrole');
 
+Route::get('/admin/users', [MemberController::class, 'index'])->name('users')->middleware('checkrole');
+
+Route::get('/admin/profile/{user}', [MemberController::class, 'edit'])->name('admin.profile');
+
+Route::put('/admin/profileupdate/{user}', [MemberController::class, 'update'])->name('admin.profileupdate');
+
+// User Profile //
 Route::get('/profile/{user}', [UserController::class, 'edit'])->name('profile');
 
 
