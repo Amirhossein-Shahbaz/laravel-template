@@ -31,13 +31,14 @@
         <!-- partial:partials/_navbar.html -->
         @include('back.navbar')
         <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
+        <div style="margin-right: -15px;" class="container-fluid page-body-wrapper bg-red">
             <!-- partial:partials/_sidebar.html -->
             @include('back.sidebar')
             <!-- partial -->
 
             <!-- main-panel ends -->
             @yield('content')
+
         </div>
         <!-- page-body-wrapper ends -->
     </div>

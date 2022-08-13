@@ -14,7 +14,6 @@
             </div>
             <!-- Page Title Header Ends-->
             <div class="row">
-                {{-- {{ $users }} --}}
                 <x-success-message class="mb-4" />
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -59,7 +58,8 @@
                                                 {!! $status !!}
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.profile', $user->id) }}" class="badge badge-warning">Edit</a>
+                                                <a href="{{ route('admin.profile', $user->id) }}"
+                                                    class="badge badge-warning">Edit</a>
                                                 <a href="#" class="badge badge-danger">Delete</a>
                                             </td>
                                         </tr>
