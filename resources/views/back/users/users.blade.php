@@ -14,10 +14,10 @@
             </div>
             <!-- Page Title Header Ends-->
             <div class="row">
-                <x-success-message class="mb-4" />
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
+                            <x-success-message />
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -60,7 +60,12 @@
                                             <td>
                                                 <a href="{{ route('admin.profile', $user->id) }}"
                                                     class="badge badge-warning">Edit</a>
-                                                <a href="#" class="badge badge-danger">Delete</a>
+                                                {{-- <a href="{{ route('admin.user.delete', $user->id) }}" class="badge badge-danger">Delete</a> --}}
+                                                <form method="POST" action="{{ route('admin.user.delete', $user->id) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="badge badge-danger">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

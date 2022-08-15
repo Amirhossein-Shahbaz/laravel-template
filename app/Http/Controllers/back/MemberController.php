@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\MockObject\Rule\MethodName;
 
 class MemberController extends Controller
 {
@@ -114,8 +115,10 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, User $user)
     {
-        //
+        $user->delete();
+        $mes = 'Delete has been done successfully';
+        return redirect()->route('users', compact('user'))->with('message', $mes);
     }
 }

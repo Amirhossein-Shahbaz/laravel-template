@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\back\AdminController;
+use App\Models\User;
 use App\Http\Controllers\back\MemberController;
 use App\Http\Controllers\front\IndexController;
 use App\Http\Controllers\Auth\UserController;
@@ -38,6 +39,11 @@ Route::get('/admin/profile/{user}', [MemberController::class, 'edit'])->name('ad
 
 Route::put('/admin/profileupdate/{user}', [MemberController::class, 'update'])->name('admin.profileupdate');
 
+Route::delete('/admin/profiledelete/{user}', [MemberController::class, 'destroy'])->name('admin.user.delete');
+// Route::delete('/admin/users/{user}', function ($id) {
+//     $user = User::findOrFail($id);
+//     $user->delete();
+// })->name('admin.user.delete');
 // User Profile //
 Route::get('/profile/{user}', [UserController::class, 'edit'])->name('profile');
 
