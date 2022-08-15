@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\back\AdminController;
+use App\Models\User;
 use App\Http\Controllers\back\MemberController;
 use App\Http\Controllers\front\IndexController;
 use App\Http\Controllers\Auth\UserController;
@@ -34,9 +35,13 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->mi
 
 Route::get('/admin/users', [MemberController::class, 'index'])->name('users')->middleware('checkrole');
 
-Route::get('/admin/profile/{user}', [MemberController::class, 'edit'])->name('admin.profile');
+Route::get('/admin/users/profile/{user}', [MemberController::class, 'edit'])->name('admin.profile');
 
-Route::put('/admin/profileupdate/{user}', [MemberController::class, 'update'])->name('admin.profileupdate');
+Route::put('/admin/users/profileupdate/{user}', [MemberController::class, 'update'])->name('admin.profileupdate');
+
+Route::delete('/admin/users/profiledelete/{user}', [MemberController::class, 'destroy'])->name('admin.user.delete');
+
+Route::get('/admin/users/status/{user}', [MemberController::class, 'updatestatus'])->name('admin.user.status');
 
 // User Profile //
 Route::get('/profile/{user}', [UserController::class, 'edit'])->name('profile');
