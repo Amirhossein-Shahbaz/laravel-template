@@ -33,20 +33,44 @@
                                     @foreach ($users as $user)
                                         @switch($user->role)
                                             @case(1)
-                                                @php  $role="Manager"; @endphp
+                                                @php
+                                                    $role="Manager";
+                                                @endphp
                                             @break
 
                                             @case(2)
-                                                @php  $role="User"; @endphp
+                                                @php
+                                                    $role="User";
+                                                @endphp
                                             @break
                                         @endswitch
                                         @switch($user->status)
                                             @case(1)
-                                                @php  $status="<a href='' class='badge badge-success'>Active</a>"; @endphp
+                                                @php
+                                                    $url = route('admin.user.status', $user->id);
+                                                    // $Status='
+                                                    //             <form method="POST" action="'.$url.'">
+                                                    //                 @csrf
+                                                    //                 @method("POST")
+                                                    //                 <button type="submit" class="badge badge-success">Avtive</button>
+                                                    //             </form>
+                                                    //         ';
+                                                    $Status='<a href="' . $url . '" class="badge badge-success">Active</a>';
+                                                @endphp
                                             @break
 
-                                            @case(2)
-                                                @php  $status="<a href='' class='badge badge-warning'>Inactive</a>"; @endphp
+                                            @case(0)
+                                                @php
+                                                    $url = route('admin.user.status', $user->id);
+                                                    // $Status='
+                                                    //             <form method="POST" action="'.$url.'">
+                                                    //                 @csrf
+                                                    //                 @method("POST")
+                                                    //                 <button type="submit" class="badge badge-danger">Inavtive</button>
+                                                    //             </form>
+                                                    //         ';
+                                                    $Status='<a href="' . $url . '" class="badge badge-warning">Inactive</a>';
+                                                @endphp
                                             @break
                                         @endswitch
                                         <tr>
@@ -54,13 +78,10 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
                                             <td><label class="badge badge-primary">{{ $role }}</label></td>
-                                            <td>
-                                                {!! $status !!}
-                                            </td>
+                                            <td>{!! $Status !!}</td>
                                             <td>
                                                 <a href="{{ route('admin.profile', $user->id) }}"
                                                     class="badge badge-warning">Edit</a>
-                                                {{-- <a href="{{ route('admin.user.delete', $user->id) }}" class="badge badge-danger">Delete</a> --}}
                                                 <form method="POST" action="{{ route('admin.user.delete', $user->id) }}">
                                                     @csrf
                                                     @method('DELETE')
@@ -69,7 +90,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>

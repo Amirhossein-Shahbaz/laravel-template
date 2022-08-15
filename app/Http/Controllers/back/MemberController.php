@@ -121,4 +121,17 @@ class MemberController extends Controller
         $mes = 'Delete has been done successfully';
         return redirect()->route('users', compact('user'))->with('message', $mes);
     }
+
+    public function updatestatus(User $user)
+    {
+        // $Status = $user->status;
+        if ($user->status == 1) {
+            $user->status = 0;
+        } else {
+            $user->status = 1;
+        }
+        $user->save();
+        $mes = 'Status has been changed successfully';
+        return redirect()->route('users', compact('user'))->with('message', $mes);
+    }
 }
