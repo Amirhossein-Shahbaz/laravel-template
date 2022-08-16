@@ -19,13 +19,13 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('admin.category.store', $category->id) }}">
+                            <form method="POST" action="{{route('admin.category.store', $category->id)}}">
                                 @csrf
                                 @method('POST')
                                 <!-- Name -->
                                 <div>
                                     <x-label for="title" :value="__('Title')" />
-                                    <x-input id="title" class="block mt-1 w-full" type="text" name="title" required
+                                    <x-input id="title" class="block mt-1 w-full" type="text" name="name"
                                         autofocus />
                                 </div>
 
@@ -33,8 +33,7 @@
                                 <div class="mt-4">
                                     <x-label for="slug" :value="__('Description')" />
 
-                                    <x-input id="slug" class="block mt-1 w-full" type="text" name="slug"
-                                        required />
+                                    <x-input id="slug" class="block mt-1 w-full" type="text" name="slug" />
                                 </div>
 
                                 <div class="flex items-center justify-end mt-4">

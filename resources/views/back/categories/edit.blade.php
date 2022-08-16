@@ -24,9 +24,9 @@
                                 @method('PUT')
                                 <!-- Name -->
                                 <div>
-                                    <x-label for="title" :value="__('Title')" />
-                                    <x-input id="title" class="block mt-1 w-full" type="text" name="title"
-                                        value="{{ $category->name }}" required autofocus />
+                                    <x-label for="name" :value="__('Title')" />
+                                    <x-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                        value="{{ $category->name }}" autofocus />
                                 </div>
 
                                 <!-- Email Address -->

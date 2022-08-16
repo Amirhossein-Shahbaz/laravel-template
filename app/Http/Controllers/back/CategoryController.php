@@ -15,7 +15,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
         $categories = Category::orderBy('id', 'DESC')->paginate(5);
         return view('back.categories.category', compact('categories'));
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
         $ValidateData = $request->validate([
             'name' => ['required', 'max:255'],
-            'slug' => ['required', 'min:10', 'unique:categories'],
+            'slug' => ['required', 'min:10'],
         ]);
 
         $category = new Category();
@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $category->create($request->all());
 
         $mes = 'Category added successfully';
-        return redirect()->route('admin.categories')->with('message', $mes);
+        return redirect()->route('admin.category', compact('category'))->with('message', $mes);
     }
 
     /**
@@ -69,7 +69,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Category $category)
     {
         return view('back.categories.edit', compact('category'));
     }
@@ -83,17 +83,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $ValidateData = $request->validate([
+        $request->validate([
             'name' => ['required', 'max:255'],
             'slug' => ['required', 'min:10', 'unique:categories'],
         ]);
 
-        $category = new Category();
-
-        $category->update($request->all());
-
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+        $category->save();
         $mes = 'Update has been done successfully';
-        return redirect()->route('admin.categories', compact('category'))->with('message', $mes);
+        return redirect()->route('admin.category', compact('category'))->with('message', $mes);
     }
 
     /**
@@ -106,6 +105,6 @@ class CategoryController extends Controller
     {
         $category->delete();
         $mes = 'Delete has been done successfully';
-        return redirect()->route('admin.categories', compact('category'))->with('message', $mes);
+        return redirect()->route('admin.category', compact('category'))->with('message', $mes);
     }
 }
