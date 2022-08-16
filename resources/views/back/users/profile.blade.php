@@ -56,6 +56,7 @@
                                     <x-button class="ml-4">
                                         {{ __('Update') }}
                                     </x-button>
+                                    <a href="{{ route('users') }}" class="btn btn-danger">Back</a>
                                 </div>
                             </form>
                         </div>

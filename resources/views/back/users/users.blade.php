@@ -48,13 +48,6 @@
                                             @case(1)
                                                 @php
                                                     $url = route('admin.user.status', $user->id);
-                                                    // $Status='
-                                                    //             <form method="POST" action="'.$url.'">
-                                                    //                 @csrf
-                                                    //                 @method("POST")
-                                                    //                 <button type="submit" class="badge badge-success">Avtive</button>
-                                                    //             </form>
-                                                    //         ';
                                                     $Status='<a href="' . $url . '" class="badge badge-success">Active</a>';
                                                 @endphp
                                             @break
@@ -62,13 +55,6 @@
                                             @case(0)
                                                 @php
                                                     $url = route('admin.user.status', $user->id);
-                                                    // $Status='
-                                                    //             <form method="POST" action="'.$url.'">
-                                                    //                 @csrf
-                                                    //                 @method("POST")
-                                                    //                 <button type="submit" class="badge badge-danger">Inavtive</button>
-                                                    //             </form>
-                                                    //         ';
                                                     $Status='<a href="' . $url . '" class="badge badge-warning">Inactive</a>';
                                                 @endphp
                                             @break
@@ -93,6 +79,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{ $users->links() }}
                     </div>
                 </div>
             </div>
