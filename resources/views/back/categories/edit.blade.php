@@ -7,7 +7,7 @@
             <div class="row page-title-header">
                 <div class="col-12">
                     <div class="page-header">
-                        <h4 class="page-title">مدیریت کاربران</h4>
+                        <h4 class="page-title">ویرایش دسته بندی ها</h4>
                     </div>
                 </div>
 
@@ -19,44 +19,29 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('admin.profileupdate', $user->id) }}">
+                            <form method="POST" action="{{ route('admin.category.update', $category->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <!-- Name -->
                                 <div>
-                                    <x-label for="name" :value="__('Name')" />
+                                    <x-label for="name" :value="__('Title')" />
                                     <x-input id="name" class="block mt-1 w-full" type="text" name="name"
-                                        value="{{ $user->name }}" required autofocus />
+                                        value="{{ $category->name }}" autofocus />
                                 </div>
 
                                 <!-- Email Address -->
                                 <div class="mt-4">
-                                    <x-label for="email" :value="__('Email')" />
+                                    <x-label for="slug" :value="__('Description')" />
 
-                                    <x-input id="email" class="block mt-1 w-full" type="email" name="email"
-                                        value="{{ $user->email }}" required />
-                                </div>
-                                <!-- Phone Number -->
-                                <div class="mt-4">
-                                    <x-label for="email" :value="__('Phone')" />
-
-                                    <x-input id="phone" class="block mt-1 w-full" type="text" name="phone"
-                                        value="{{ $user->phone }}" required />
-                                </div>
-
-                                <!-- Password -->
-                                <div class="mt-4">
-                                    <x-label for="password" :value="__('Password')" />
-
-                                    <x-input id="password" class="block mt-1 w-full" type="password" name="password"
-                                        autocomplete="new-password" />
+                                    <x-input id="slug" class="block mt-1 w-full" type="text" name="slug"
+                                        value="{{ $category->slug }}" required />
                                 </div>
 
                                 <div class="flex items-center justify-end mt-4">
                                     <x-button class="ml-4">
-                                        {{ __('Update') }}
+                                        {{ __('Create') }}
                                     </x-button>
-                                    <a href="{{ route('users') }}" class="btn btn-danger">Back</a>
+                                    <a href="{{ route('admin.category') }}" class="btn btn-danger">Back</a>
                                 </div>
                             </form>
                         </div>

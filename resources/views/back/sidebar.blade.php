@@ -32,7 +32,7 @@
                         <a class="nav-link" href="{{ route('users') }}">کاربران</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">دسته بندی ها</a>
+                        <a class="nav-link" href="{{ route('admin.category') }}">دسته بندی ها</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">مطالب</a>

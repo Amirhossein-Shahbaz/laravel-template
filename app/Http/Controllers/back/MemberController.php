@@ -17,7 +17,7 @@ class MemberController extends Controller
      */
     public function index(User $user)
     {
-        $users = User::orderBy('id', 'DESC')->get();
+        $users = User::orderBy('id', 'DESC')->paginate(10);
         return view('back.users.users', compact('users'));
     }
 
