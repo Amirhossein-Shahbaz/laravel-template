@@ -1,5 +1,7 @@
 @extends('back.index')
-
+@section('title')
+    Create Category
+@endsection
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -7,7 +9,7 @@
             <div class="row page-title-header">
                 <div class="col-12">
                     <div class="page-header">
-                        <h4 class="page-title">درج دسته بندی</h4>
+                        <h4 class="page-title">Categories Managment</h4>
                     </div>
                 </div>
 
@@ -19,7 +21,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{route('admin.category.store', $category->id)}}">
+                            <form method="POST" action="{{ route('admin.category.store', $category->id) }}">
                                 @csrf
                                 @method('POST')
                                 <!-- Name -->

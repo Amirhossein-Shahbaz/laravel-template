@@ -1,5 +1,7 @@
 @extends('back.index')
-
+@section('title')
+    Edit Users
+@endsection
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -7,7 +9,7 @@
             <div class="row page-title-header">
                 <div class="col-12">
                     <div class="page-header">
-                        <h4 class="page-title">مدیریت کاربران</h4>
+                        <h4 class="page-title">User Managment</h4>
                     </div>
                 </div>
 

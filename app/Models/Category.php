@@ -11,5 +11,8 @@ class Category extends Model
 
     protected $fillable = ['name', 'slug'];
 
-    protected $nullable = ['name'];
+    public function articles()
+    {
+        return $this->belongsToMany(Article::class);
+    }
 }

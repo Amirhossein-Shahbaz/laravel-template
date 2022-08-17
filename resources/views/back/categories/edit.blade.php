@@ -1,5 +1,7 @@
 @extends('back.index')
-
+@section('title')
+    Edit Category
+@endsection
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -7,7 +9,7 @@
             <div class="row page-title-header">
                 <div class="col-12">
                     <div class="page-header">
-                        <h4 class="page-title">ویرایش دسته بندی ها</h4>
+                        <h4 class="page-title">Categories Managment</h4>
                     </div>
                 </div>
 

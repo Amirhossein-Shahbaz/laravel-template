@@ -5,9 +5,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>آموزش لاراول - بخش مدیریت</title>
+    <title>@yield('title')</title>
     <!-- plugins:css -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('/back/assets/css/chosen.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/back/assets/vendors/iconfonts/ionicons/css/ionicons.css') }}">
     <link rel="stylesheet" href="{{ asset('/back/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/back/assets/vendors/iconfonts/typicons/src/font/typicons.css') }}">
@@ -44,6 +45,9 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    {{-- <script src="{{ asset('back/assets/vendors/jquery/easing/jquery.easing.min.js') }}"></script> --}}
+    <script src="{{ asset('back/assets/js/chosen.jquery.min.js') }}"></script>
+    <script src="{{ asset('back/assets/js/chosen.proto.min.js') }}"></script>
     <script src="{{ asset('back/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <script src="{{ asset('back/assets/vendors/js/vendor.bundle.addons.js') }}"></script>
     <!-- endinject -->

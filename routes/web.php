@@ -7,6 +7,9 @@ use App\Http\Controllers\back\MemberController;
 use App\Http\Controllers\front\IndexController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\back\CategoryController;
+use App\Http\Controllers\back\ArticleController;
+use App\Models\Article;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +54,18 @@ Route::prefix('admin/category')->middleware('checkrole')->group(function () {
     Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('admin.category.edit');
     Route::put('/update/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::delete('/delete/{category}', [CategoryController::class, 'destroy'])->name('admin.category.delete');
+});
+
+
+// Article Routes //
+Route::prefix('admin/article')->middleware('checkrole')->group(function () {
+    Route::get('/', [ArticleController::class, 'index'])->name('admin.article');
+    Route::get('/create', [ArticleController::class, 'create'])->name('admin.article.create');
+    Route::post('/store', [ArticleController::class, 'store'])->name('admin.article.store');
+    // Route::get('/show/{category}', [CategoryController::class, 'show'])->name('admin.category.show');
+    Route::get('/edit/{article}', [ArticleController::class, 'edit'])->name('admin.article.edit');
+    Route::put('/update/{article}', [ArticleController::class, 'update'])->name('admin.article.update');
+    Route::delete('/delete/{article}', [ArticleController::class, 'destroy'])->name('admin.article.delete');
 });
 
 // User Profile //
