@@ -14,7 +14,7 @@
             </div>
             <!-- Page Title Header Ends-->
             <div class="row">
-                <a href="{{ route('admin.category.create') }}" class="btn btn-primary">New category</a>
+                <a href="{{ route('admin.category.create') }}" class="btn btn-primary ml-3 mb-3">New category</a>
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
