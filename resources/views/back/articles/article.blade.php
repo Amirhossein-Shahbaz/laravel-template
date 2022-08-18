@@ -1,6 +1,6 @@
 @extends('back.index')
 @section('title')
-    Users List
+    Article List
 @endsection
 @section('content')
     <div class="main-panel">
@@ -9,13 +9,14 @@
             <div class="row page-title-header">
                 <div class="col-12">
                     <div class="page-header">
-                        <h4 class="page-title">User Managment</h4>
+                        <h4 class="page-title">Article Managment</h4>
                     </div>
                 </div>
 
             </div>
             <!-- Page Title Header Ends-->
             <div class="row">
+                <a href="{{ route('admin.article.create') }}" class="btn btn-primary ml-3 mb-3">New Article</a>
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
@@ -23,54 +24,50 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Role</th>
+                                        <th>Title</th>
+                                        <th>Slug</th>
+                                        {{-- <th>Description</th> --}}
+                                        <th>Author</th>
+                                        <th>Categories</th>
+                                        <th>Hit</th>
                                         <th>Status</th>
-                                        <th>Manage</th>
+                                        <th>Managment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
-                                        @switch($user->role)
+                                    @foreach ($articles as $article)
+                                        @switch($article->status)
                                             @case(1)
                                                 @php
-                                                    $role="Manager";
-                                                @endphp
-                                            @break
-
-                                            @case(2)
-                                                @php
-                                                    $role="User";
-                                                @endphp
-                                            @break
-                                        @endswitch
-                                        @switch($user->status)
-                                            @case(1)
-                                                @php
-                                                    $url = route('admin.user.status', $user->id);
+                                                    $url = route('admin.article.status', $article->id);
                                                     $Status='<a href="' . $url . '" class="badge badge-success">Active</a>';
                                                 @endphp
                                             @break
 
                                             @case(0)
                                                 @php
-                                                    $url = route('admin.user.status', $user->id);
+                                                    $url = route('admin.article.status', $article->id);
                                                     $Status='<a href="' . $url . '" class="badge badge-warning">Inactive</a>';
                                                 @endphp
                                             @break
                                         @endswitch
                                         <tr>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->phone }}</td>
-                                            <td><label class="badge badge-primary">{{ $role }}</label></td>
+                                            <td>{{ $article->title }}</td>
+                                            <td>{{ $article->slug }}</td>
+                                            {{-- <td class="text-left">{{ $article->description }}</td> --}}
+                                            <td>{{ $article->user->name }}</td>
+                                            <td>
+                                                @foreach ($article->categories()->pluck('name') as $category)
+                                                    <span class="badge badge-primary">{{ $category }}</span>
+                                                @endforeach
+                                            </td>
+                                            <td>{{ $article->hit }}</td>
                                             <td>{!! $Status !!}</td>
                                             <td>
-                                                <a href="{{ route('admin.profile', $user->id) }}"
+                                                <a href="{{ route('admin.article.edit', $article->id) }}"
                                                     class="badge badge-warning">Edit</a>
-                                                <form method="POST" action="{{ route('admin.user.delete', $user->id) }}">
+                                                <form method="POST"
+                                                    action="{{ route('admin.article.delete', $article->id) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="badge badge-danger">Delete</button>
@@ -81,7 +78,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $users->links() }}
+                        {{ $articles->links() }}
                     </div>
                 </div>
             </div>

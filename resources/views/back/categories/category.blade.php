@@ -1,5 +1,7 @@
 @extends('back.index')
-
+@section('title')
+    Category List
+@endsection
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -7,14 +9,14 @@
             <div class="row page-title-header">
                 <div class="col-12">
                     <div class="page-header">
-                        <h4 class="page-title">مدیریت کاربران</h4>
+                        <h4 class="page-title">Categories Managment</h4>
                     </div>
                 </div>
 
             </div>
             <!-- Page Title Header Ends-->
             <div class="row">
-                <a href="{{ route('admin.category.create') }}" class="btn btn-primary">New category</a>
+                <a href="{{ route('admin.category.create') }}" class="btn btn-primary ml-3 mb-3">New category</a>
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">

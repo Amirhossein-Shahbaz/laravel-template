@@ -35,7 +35,7 @@
                         <a class="nav-link" href="{{ route('admin.category') }}">دسته بندی ها</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">مطالب</a>
+                        <a class="nav-link" href="{{ route('admin.article') }}">مطالب</a>
                     </li>
                 </ul>
             </div>
