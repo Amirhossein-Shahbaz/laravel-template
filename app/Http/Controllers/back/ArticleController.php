@@ -72,9 +72,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        $categories = Category::all()->pluck('name', 'id');
+        return view('back.articles.edit', compact('article', 'categories'));
     }
 
     /**
@@ -84,9 +85,22 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'max:255'],
+            'slug' => ['required', 'min:10'],
+            'description' => ['required', 'min:50', 'max:255'],
+            'status' => ['required'],
+        ]);
+
+        $article->title = $request->title;
+        $article->slug = $request->slug;
+        $article->description = $request->description;
+        $article->save();
+        $article->categories()->sync($request->category);
+        $mes = 'Article posted successfully';
+        return redirect()->route('admin.article', compact('article'))->with('message', $mes);
     }
 
     /**
@@ -99,6 +113,19 @@ class ArticleController extends Controller
     {
         $article->delete();
         $mes = 'Delete has been done successfully';
+        return redirect()->route('admin.article', compact('article'))->with('message', $mes);
+    }
+
+    public function updatestatus(Article $article)
+    {
+        // $Status = $user->status;
+        if ($article->status == 1) {
+            $article->status = 0;
+        } else {
+            $article->status = 1;
+        }
+        $article->save();
+        $mes = 'Status has been changed successfully';
         return redirect()->route('admin.article', compact('article'))->with('message', $mes);
     }
 }

@@ -26,8 +26,9 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>Slug</th>
-                                        <th>Description</th>
+                                        {{-- <th>Description</th> --}}
                                         <th>Author</th>
+                                        <th>Categories</th>
                                         <th>Hit</th>
                                         <th>Status</th>
                                         <th>Managment</th>
@@ -35,13 +36,33 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($articles as $article)
+                                        @switch($article->status)
+                                            @case(1)
+                                                @php
+                                                    $url = route('admin.article.status', $article->id);
+                                                    $Status='<a href="' . $url . '" class="badge badge-success">Active</a>';
+                                                @endphp
+                                            @break
+
+                                            @case(0)
+                                                @php
+                                                    $url = route('admin.article.status', $article->id);
+                                                    $Status='<a href="' . $url . '" class="badge badge-warning">Inactive</a>';
+                                                @endphp
+                                            @break
+                                        @endswitch
                                         <tr>
                                             <td>{{ $article->title }}</td>
                                             <td>{{ $article->slug }}</td>
-                                            <td>{{ $article->description }}</td>
-                                            <td>{{ $article->user_id }}</td>
+                                            {{-- <td class="text-left">{{ $article->description }}</td> --}}
+                                            <td>{{ $article->user->name }}</td>
+                                            <td>
+                                                @foreach ($article->categories()->pluck('name') as $category)
+                                                    <span class="badge badge-primary">{{ $category }}</span>
+                                                @endforeach
+                                            </td>
                                             <td>{{ $article->hit }}</td>
-                                            <td>{{ $article->status }}</td>
+                                            <td>{!! $Status !!}</td>
                                             <td>
                                                 <a href="{{ route('admin.article.edit', $article->id) }}"
                                                     class="badge badge-warning">Edit</a>

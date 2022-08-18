@@ -66,6 +66,7 @@ Route::prefix('admin/article')->middleware('checkrole')->group(function () {
     Route::get('/edit/{article}', [ArticleController::class, 'edit'])->name('admin.article.edit');
     Route::put('/update/{article}', [ArticleController::class, 'update'])->name('admin.article.update');
     Route::delete('/delete/{article}', [ArticleController::class, 'destroy'])->name('admin.article.delete');
+    Route::get('/status/{article}', [ArticleController::class, 'updatestatus'])->name('admin.article.status');
 });
 
 // User Profile //
